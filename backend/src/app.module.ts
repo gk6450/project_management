@@ -9,7 +9,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb+srv://gouthamgk2016:Wga8dctFEoKwCu3d@cluster0.uatszai.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
+    MongooseModule.forRoot(process.env.MONGODB_URI || ''),
     AuthModule,
     ProjectsModule,
     UsersModule,

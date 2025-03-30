@@ -42,11 +42,11 @@ JWT_SECRET=your_secret
 
 ### Frontend
 
-**Install Angular:** npm install -g @angular/cli
+**Install Angular:**  npm install -g @angular/cli
 
 **Change directory:** cd frontend
 
 **Install packages:** npm install
 
-**Start Angular:** ng serve
+**Start Angular:**    ng serve
 
