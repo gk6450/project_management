@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Project Management</a>
+    <div class="d-flex align-items-center" *ngIf="isLoggedIn">
+      <span class="navbar-text me-3">
+        Welcome, {{ username }}
+      </span>
+      <!-- Notification Bell with Count -->
+      <div class="position-relative me-3" (click)="toggleNotifications()" style="cursor: pointer;">
+        <i class="bi bi-bell" style="font-size: 1.5rem;"></i>
+        <span *ngIf="unreadCount > 0" class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+          {{ unreadCount }}
+        </span>
+      </div>
+      <button class="btn btn-outline-light" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Alert notification -->
+<div *ngIf="alert" class="alert alert-{{ alert.type }} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3" role="alert">
+  {{ alert.text }}
+  <button type="button" class="btn-close" (click)="dismissAlert()" aria-label="Close"></button>
+</div>
+
+<!-- Notifications Modal -->
+<div *ngIf="showNotifications" class="notifications-modal">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Notifications</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="toggleNotifications()"></button>
+    </div>
+    <div class="card-body notifications-body">
+      <div *ngFor="let notification of notifications" 
+           class="alert alert-dismissible fade show mb-2"
+           [ngClass]="{'alert-info': !notification.read, 'alert-secondary': notification.read}"
+           (click)="markAsRead(notification)" style="cursor: pointer;">
+        <strong>{{ notification.message }}</strong>
+        <span class="float-end text-muted">{{ notification.timestamp | date: 'shortTime' }}</span>
+      </div>
+      <div *ngIf="notifications.length === 0" class="text-center text-muted">
+        No notifications.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>

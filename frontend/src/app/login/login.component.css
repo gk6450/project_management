@@ -1,0 +1,10 @@
+.password-toggle-btn {
+    border-color: #ced4da;
+    background: white;
+  }
+  
+  .password-toggle-btn:hover {
+    background: #b9bbbd;
+    border-color: #ced4da;
+  }
+  

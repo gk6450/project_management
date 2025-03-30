@@ -1,0 +1,41 @@
+<div class="row justify-content-center" style="padding-top: 5%; padding-bottom: 5%;">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h3 class="card-title text-center mb-4">Login</h3>
+        <!-- Display error message if any -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+        <form (ngSubmit)="login()">
+          <div class="mb-3">
+            <label for="usernameOrEmail" class="form-label">Username or Email</label>
+            <input [(ngModel)]="usernameOrEmail" name="usernameOrEmail" id="usernameOrEmail" class="form-control" placeholder="Enter your username or email" required />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+              <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" id="password" class="form-control" placeholder="Enter your password" required />
+              <button type="button" class="btn btn-outline-secondary password-toggle-btn" (click)="togglePasswordVisibility()">
+                <i class="{{ showPassword ? 'bi bi-eye-slash' : 'bi bi-eye' }}"></i>
+              </button>
+            </div>
+          </div>          
+          <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select [(ngModel)]="role" name="role" id="role" class="form-select">
+              <option value="Viewer">Viewer</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+        </form>
+
+        <!-- Register button visible only if role is not Admin -->
+        <button *ngIf="role !== 'Admin'" class="btn btn-outline-secondary w-100" (click)="navigateToRegister()">
+          Register
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

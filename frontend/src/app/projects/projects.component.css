@@ -1,0 +1,48 @@
+.table-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .table-col {
+    text-align: left;
+    word-wrap: break-word;
+  }
+  
+  /* Admin Columns */
+  .admin-title {
+    flex: 0 0 17.5%;
+  }
+  
+  .admin-description {
+    flex: 0 0 30%;
+  }
+  
+  .admin-project {
+    flex: 0 0 17.5%;
+  }
+  
+  .admin-status {
+    flex: 0 0 15%;
+  }
+  
+  .admin-actions {
+    flex: 0 0 20%;
+  }
+  
+  /* Viewer Columns */
+  .viewer-title {
+    flex: 0 0 25%;
+  }
+  
+  .viewer-description {
+    flex: 0 0 40%;
+  }
+  
+  .viewer-project {
+    flex: 0 0 25%;
+  }
+  
+  .viewer-status {
+    flex: 0 0 10%;
+  }
+  

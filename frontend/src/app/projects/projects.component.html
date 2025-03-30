@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Projects</h2>
+    <!-- Create Project Button (Admins Only) -->
+    <button *ngIf="role === 'Admin'" class="btn btn-success" (click)="createProject()">
+      <i class="bi bi-plus-circle"></i> Create Project
+    </button>
+  </div>
+
+  <div class="row mb-3 align-items-end">
+    <!-- Search Bar with Icon -->
+    <div class="col-12 col-md-6">
+      <div class="input-group" style="width: 35%;">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input type="text" [(ngModel)]="searchTerm" (input)="applyFilters()"
+               class="form-control" placeholder="Search projects..." />
+      </div>
+    </div>
+  
+    <!-- Filter and Sort Controls -->
+    <div class="col-12 col-md-6 text-end">
+      <label class="form-label me-2">Filter By Status</label>
+      <select class="form-select d-inline-block w-auto" [(ngModel)]="filterStatus" (change)="applyFilters()">
+        <option value="All">All</option>
+        <option value="Planning">Planning</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <label class="form-label ms-3 me-2">Sort By</label>
+      <select class="form-select d-inline-block w-auto" [(ngModel)]="sortOption" (change)="applyFilters()">
+        <option value="none">None</option>
+        <option value="title">Title</option>
+        <option value="projectManager">Project Manager</option>
+        <option value="status">Status</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Projects Table -->
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr class="table-row">
+          <th class="table-col" [ngClass]="role === 'Admin' ? 'admin-title' : 'viewer-title'">Title</th>
+          <th class="table-col" [ngClass]="role === 'Admin' ? 'admin-description' : 'viewer-description'">Description</th>
+          <th class="table-col" [ngClass]="role === 'Admin' ? 'admin-project' : 'viewer-project'">Project Manager</th>
+          <th class="table-col" [ngClass]="role === 'Admin' ? 'admin-status' : 'viewer-status'">Status</th>
+          <th *ngIf="role === 'Admin'" class="table-col admin-actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of filteredProjects" class="table-row">
+          <td class="table-col" [ngClass]="role === 'Admin' ? 'admin-title' : 'viewer-title'">{{ project.title }}</td>
+          <td class="table-col" [ngClass]="role === 'Admin' ? 'admin-description' : 'viewer-description'">{{ project.description }}</td>
+          <td class="table-col" [ngClass]="role === 'Admin' ? 'admin-project' : 'viewer-project'">{{ project.projectManager }}</td>
+          <td class="table-col" [ngClass]="role === 'Admin' ? 'admin-status' : 'viewer-status'">{{ project.status }}</td>
+          <td *ngIf="role === 'Admin'" class="table-col admin-actions">
+            <button class="btn btn-warning btn-sm me-2" (click)="editProject(project._id)">
+              <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteProject(project._id)">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>    
+  
+</div>
