@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../env';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
-  private baseUrl = 'http://localhost:3000/projects';
+  private baseUrl = `${environment.BACKEND_URL}projects`;
 
   constructor(private http: HttpClient) {}
 

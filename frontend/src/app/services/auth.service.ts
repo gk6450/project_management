@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../env';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000/auth';
+  private baseUrl = `${environment.BACKEND_URL}auth`;
 
   constructor(private http: HttpClient) {}
 
