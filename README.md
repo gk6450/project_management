@@ -50,3 +50,10 @@ JWT_SECRET=your_secret
 
 **Start Angular:**    ng serve
 
+### Deployment
+https://project-management-two-pied.vercel.app
+
+FrontEnd - Vercel
+
+Backend  - Railway
+
